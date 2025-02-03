@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Завдання 9</title>
+  <style>
+    h3 {
+      color: #ff2e95;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 15px;
+    }
+    button {
+      padding: 5px 10px;
+      background-color: #ffc9e4;
+    }
+  </style>
+</head>
+
+<body>
+<h3>Список товарів:</h3>
+<table id="products">
+  <tr>
+    <th>Товар</th>
+    <th>Дія</th>
+  </tr>
+  <tr>
+    <td>Брюки</td>
+    <td><button class="order" data-product="Брюки">Замовити</button></td>
+  </tr>
+  <tr>
+    <td>Сорочка</td>
+    <td><button class="order" data-product="Сорочка">Замовити</button></td>
+  </tr>
+  <tr>
+    <td>Шорти</td>
+    <td><button class="order" data-product="Шорти">Замовити</button></td>
+  </tr>
+  <tr>
+    <td>Туфлі</td>
+    <td><button class="order" data-product="Туфлі">Замовити</button></td>
+  </tr>
+</table>
+
+<h3>Кошик:</h3>
+<table id="cart">
+  <tr>
+    <th>Товар</th>
+    <th>Кількість</th>
+  </tr>
+</table>
+
+<script src="task9.js"></script>
+</body>
+</html>

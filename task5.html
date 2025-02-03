@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Завдання 5</title>
+  <style>
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+    }
+    .gallery img.inactive {
+      filter: grayscale(100%);
+      opacity: 0.5;
+    }
+    .gallery img.active {
+      filter: grayscale(0%);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+<div class="gallery">
+  <img src="task5.foto/1.jpg" alt="1" class="inactive">
+  <img src="task5.foto/2.jpg" alt="2" class="inactive">
+  <img src="task5.foto/3.jpg" alt="3" class="inactive">
+  <img src="task5.foto/4.jpg" alt="4" class="inactive">
+  <img src="task5.foto/5.jpg" alt="5" class="inactive">
+  <img src="task5.foto/6.jpg" alt="6" class="inactive">
+  <img src="task5.foto/7.jpg" alt="7" class="inactive">
+  <img src="task5.foto/8.jpg" alt="8" class="inactive">
+  <img src="task5.foto/9.jpg" alt="9" class="inactive">
+  <img src="task5.foto/10.jpg" alt="10" class="inactive">
+  <img src="task5.foto/11.jpg" alt="11" class="inactive">
+  <img src="task5.foto/12.jpg" alt="2" class="inactive">
+</div>
+<script src="task5.js"></script>
+</body>
+</html>

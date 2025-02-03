@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Завдання 7</title>
+  <style>
+    #container {
+      align-items: center;
+      justify-content: center;
+      margin-top: 50px;
+    }
+    #box {
+      width: 50px;
+      height: 50px;
+      background-color: #0074fd;
+    }
+    .controls {
+      margin-left: 10px;
+    }
+    .control {
+      margin-bottom: 10px;
+    }
+    input {
+      width: 100px;
+    }
+  </style>
+</head>
+<body>
+<div id="container">
+
+  <div class="controls">
+    <div class="control">
+      <label for="width">width: </label>
+      <input type="range" id="width" min="1" max="100" value="50">
+      <input type="number" id="widthValue" value="50">
+    </div>
+
+    <div class="control">
+      <label for="height">height: </label>
+      <input type="range" id="height" min="1" max="100" value="50">
+      <input type="number" id="heightValue" value="50">
+    </div>
+
+    <div class="control">
+      <label for="rotate">rotate: </label>
+      <input type="range" id="rotate" min="0" max="360" value="180">
+      <input type="number" id="rotateValue" value="180">
+    </div>
+  </div>
+  <div id="box"></div>
+</div>
+<script src="task7.js"></script>
+</body>
+</html>
