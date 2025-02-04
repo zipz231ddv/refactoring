@@ -6,7 +6,7 @@ const resultElement = document.getElementById("result");
 
 let score = 0;
 let currentTask = 0;
-const totalTasks = 5;
+let totalTasks = parseInt(prompt('введи кількість завдань', '5'), 10) || 5;
 let correctAnswer;
 
 function generateTask() {
