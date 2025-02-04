@@ -31,22 +31,15 @@ function generateTask() {
     //ref
     optionsForm.innerHTML = '';
 
-    answers.forEach((answer) => {
-        const label = document.createElement('label');
-        const input = document.createElement('input');
-        input.type = 'radio';
-        input.name = 'answer';
-        input.value = answer;
-
-        const span = document.createElement('span');
-        span.textContent = answer;
-
-        label.appendChild(input);
-        label.appendChild(span);
-        optionsForm.appendChild(label);
-        optionsForm.appendChild(document.createElement('br'));
+issues2
+    const labels = optionsForm.querySelectorAll('label');
+    labels.forEach((label, index) => {
+        const input = label.querySelector('input');
+        const span = label.querySelector('span');
+        input.value = answers[index];
+        span.textContent = answers[index];
+        input.checked = false;
     });
-    //ref
     resultElement.textContent = '';
 }
 
@@ -62,14 +55,15 @@ optionsForm.addEventListener('change', (event) => {
 
     currentTask++;
     scoreElement.textContent = `${score}/${currentTask}`;
-
-    const inputs = optionsForm.querySelectorAll('input');
-    inputs.forEach((input) => (input.disabled = true));
+ issues2
+    //ref
+    toggleInputs(false);
 });
 
 nextButton.addEventListener('click', () => {
-    const inputs = optionsForm.querySelectorAll('input');
-    inputs.forEach((input) => (input.disabled = false));
+    //ref
+    toggleInputs(true);
+
     generateTask();
 });
 
