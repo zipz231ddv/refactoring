@@ -1,8 +1,8 @@
-const taskElement = document.getElementById("task");
-const scoreElement = document.getElementById("score");
-const optionsForm = document.getElementById("optionsForm");
-const nextButton = document.getElementById("nextButton");
-const resultElement = document.getElementById("result");
+const taskElement = document.getElementById('task');
+const scoreElement = document.getElementById('score');
+const optionsForm = document.getElementById('optionsForm');
+const nextButton = document.getElementById('nextButton');
+const resultElement = document.getElementById('result');
 
 let score = 0;
 let currentTask = 0;
@@ -29,22 +29,22 @@ function generateTask() {
     }
     answers.sort(() => Math.random() - 0.5);
 
-    const labels = optionsForm.querySelectorAll("label");
+    const labels = optionsForm.querySelectorAll('label');
     labels.forEach((label, index) => {
-        const input = label.querySelector("input");
-        const span = label.querySelector("span");
+        const input = label.querySelector('input');
+        const span = label.querySelector('span');
         input.value = answers[index];
         span.textContent = answers[index];
         input.checked = false;
     });
-    resultElement.textContent = "";
+    resultElement.textContent = '';
 }
 
-optionsForm.addEventListener("change", (event) => {
+optionsForm.addEventListener('change', (event) => {
     const selectedAnswer = parseInt(event.target.value, 10);
 
     if (selectedAnswer === correctAnswer) {
-        resultElement.textContent = "правильно";
+        resultElement.textContent = 'правильно';
         score++;
     } else {
         resultElement.textContent = `помилка, правильна відповідь: ${correctAnswer}`;
@@ -52,14 +52,13 @@ optionsForm.addEventListener("change", (event) => {
 
     currentTask++;
     scoreElement.textContent = `${score}/${currentTask}`;
-
-    const inputs = optionsForm.querySelectorAll("input");
-    inputs.forEach(input => (input.disabled = true));
+    //ref
+    toggleInputs(false);
 });
 
-nextButton.addEventListener("click", () => {
-    const inputs = optionsForm.querySelectorAll("input");
-    inputs.forEach(input => (input.disabled = false));
+nextButton.addEventListener('click', () => {
+    //ref
+    toggleInputs(true);
     generateTask();
 });
 
