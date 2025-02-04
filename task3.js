@@ -28,7 +28,10 @@ function generateTask() {
         }
     }
     answers.sort(() => Math.random() - 0.5);
+    //ref
+    optionsForm.innerHTML = '';
 
+issues2
     const labels = optionsForm.querySelectorAll('label');
     labels.forEach((label, index) => {
         const input = label.querySelector('input');
@@ -52,6 +55,7 @@ optionsForm.addEventListener('change', (event) => {
 
     currentTask++;
     scoreElement.textContent = `${score}/${currentTask}`;
+ issues2
     //ref
     toggleInputs(false);
 });
@@ -59,6 +63,7 @@ optionsForm.addEventListener('change', (event) => {
 nextButton.addEventListener('click', () => {
     //ref
     toggleInputs(true);
+
     generateTask();
 });
 
