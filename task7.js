@@ -1,9 +1,9 @@
 const box = document.getElementById('box');
-const controls = [
-    { slider: 'width', value: 'widthValue', style: 'width', unit: 'px' },
-    { slider: 'height', value: 'heightValue', style: 'height', unit: 'px' },
-    { slider: 'rotate', value: 'rotateValue', style: 'transform', unit: 'deg' }
-];
+const parameters = {
+    width: { slider: widthSlider, valueInput: widthValue, style: 'width', unit: 'px' },
+    height: { slider: heightSlider, valueInput: heightValue, style: 'height', unit: 'px' },
+    rotate: { slider: rotateSlider, valueInput: rotateValue, style: 'transform', unit: 'deg' }
+};
 
 controls.forEach(control => {
     const slider = document.getElementById(control.slider);
@@ -28,3 +28,8 @@ function bindInputHandlers(slider, valueInput, styleProperty, unit = '') {
 bindInputHandlers(widthSlider, widthValue, 'width', 'px');
 bindInputHandlers(heightSlider, heightValue, 'height', 'px');
 bindInputHandlers(rotateSlider, rotateValue, 'transform', 'deg');
+
+Object.keys(parameters).forEach(key => {
+    const param = parameters[key];
+    bindInputHandlers(param.slider, param.valueInput, param.style, param.unit);
+});
