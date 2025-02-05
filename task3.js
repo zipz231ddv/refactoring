@@ -6,7 +6,16 @@ const resultElement = document.getElementById('result');
 
 let score = 0;
 let currentTask = 0;
-let totalTasks = parseInt(prompt('введи кількість завдань', '5'), 10) || 5;
+let totalTasks = 0; // Змінна для збереження кількості завдань
+
+const startGameButton = document.getElementById('startGameButton');
+const taskCountInput = document.getElementById('taskCount');
+
+startGameButton.addEventListener('click', () => {
+    totalTasks = parseInt(taskCountInput.value, 10) || 5; // Зчитуємо кількість завдань
+    generateTask(); // Починаємо гру
+});
+
 let correctAnswer;
 
 function generateTask() {
@@ -64,8 +73,24 @@ nextButton.addEventListener('click', () => {
     //ref
     toggleInputs(true);
 
-    generateTask();
+    optionsForm.innerHTML = ''; // Очищаємо форму
+
+answers.forEach((answer) => {
+    const label = document.createElement('label');
+    const input = document.createElement('input');
+    const span = document.createElement('span');
+
+    input.type = 'radio';
+    input.name = 'answer';
+    input.value = answer;
+
+    span.textContent = answer;
+
+    label.appendChild(input);
+    label.appendChild(span);
+    optionsForm.appendChild(label);
 });
+
 
 function finishGame() {
     resultElement.textContent = `рахунок ${score}/${totalTasks}`;
