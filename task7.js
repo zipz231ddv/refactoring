@@ -1,38 +1,30 @@
 const box = document.getElementById('box');
-const widthSlider = document.getElementById('width');
-const heightSlider = document.getElementById('height');
-const rotateSlider = document.getElementById('rotate');
+const controls = [
+    { slider: 'width', value: 'widthValue', style: 'width', unit: 'px' },
+    { slider: 'height', value: 'heightValue', style: 'height', unit: 'px' },
+    { slider: 'rotate', value: 'rotateValue', style: 'transform', unit: 'deg' }
+];
 
-const widthValue = document.getElementById('widthValue');
-const heightValue = document.getElementById('heightValue');
-const rotateValue = document.getElementById('rotateValue');
-
-widthSlider.addEventListener('input', () => {
-    box.style.width = widthSlider.value + 'px';
-    widthValue.value = widthSlider.value;
+controls.forEach(control => {
+    const slider = document.getElementById(control.slider);
+    const valueInput = document.getElementById(control.value);
+    bindInputHandlers(slider, valueInput, control.style, control.unit);
 });
 
-widthValue.addEventListener('input', () => {
-    box.style.width = widthValue.value + 'px';
-    widthSlider.value = widthValue.value;
-});
 
-heightSlider.addEventListener('input', () => {
-    box.style.height = heightSlider.value + 'px';
-    heightValue.value = heightSlider.value;
-});
+function bindInputHandlers(slider, valueInput, styleProperty, unit = '') {
+    slider.addEventListener('input', () => {
+        box.style[styleProperty] = slider.value + unit;
+        valueInput.value = slider.value;
+    });
 
-heightValue.addEventListener('input', () => {
-    box.style.height = heightValue.value + 'px';
-    heightSlider.value = heightValue.value;
-});
+    valueInput.addEventListener('input', () => {
+        box.style[styleProperty] = valueInput.value + unit;
+        slider.value = valueInput.value;
+    });
+}
 
-rotateSlider.addEventListener('input', () => {
-    box.style.transform = `rotate(${rotateSlider.value}deg)`;
-    rotateValue.value = rotateSlider.value;
-});
-
-rotateValue.addEventListener('input', () => {
-    box.style.transform = `rotate(${rotateValue.value}deg)`;
-    rotateSlider.value = rotateValue.value;
-});
+// Виклик функції для ширини, висоти та обертання
+bindInputHandlers(widthSlider, widthValue, 'width', 'px');
+bindInputHandlers(heightSlider, heightValue, 'height', 'px');
+bindInputHandlers(rotateSlider, rotateValue, 'transform', 'deg');
