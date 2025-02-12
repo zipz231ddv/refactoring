@@ -6,7 +6,7 @@ const resultElement = document.getElementById('result');
 
 let score = 0;
 let currentTask = 0;
-let totalTasks = parseInt(prompt('введи кількість завдань', '5'), 10) || 5;
+let totalTasks = parseInt(prompt('Введи кількість завдань', '5'), 10) || 5;
 let correctAnswer;
 
 function generateTask() {
@@ -14,6 +14,7 @@ function generateTask() {
         finishGame();
         return;
     }
+
     const num1 = Math.floor(Math.random() * 5) + 1;
     const num2 = Math.floor(Math.random() * 5) + 1;
     correctAnswer = num1 * num2;
@@ -27,48 +28,59 @@ function generateTask() {
             answers.push(wrongAnswer);
         }
     }
-    answers.sort(() => Math.random() - 0.5);
-    //ref
+    answers.sort(() => 0.5 - Math.random()); 
+
     optionsForm.innerHTML = '';
 
-issues2
-    const labels = optionsForm.querySelectorAll('label');
-    labels.forEach((label, index) => {
-        const input = label.querySelector('input');
-        const span = label.querySelector('span');
-        input.value = answers[index];
-        span.textContent = answers[index];
-        input.checked = false;
+    answers.forEach(answer => {
+        const label = document.createElement('label');
+        const input = document.createElement('input');
+        const span = document.createElement('span');
+
+        input.type = 'radio';
+        input.name = 'answer';
+        input.value = answer;
+        span.textContent = answer;
+
+        label.appendChild(input);
+        label.appendChild(span);
+        optionsForm.appendChild(label);
     });
+
     resultElement.textContent = '';
+    toggleInputs(true);
 }
 
 optionsForm.addEventListener('change', (event) => {
     const selectedAnswer = parseInt(event.target.value, 10);
 
     if (selectedAnswer === correctAnswer) {
-        resultElement.textContent = 'правильно';
+        resultElement.textContent = 'Правильно!';
         score++;
     } else {
-        resultElement.textContent = `помилка, правильна відповідь: ${correctAnswer}`;
+        resultElement.textContent = `Помилка, правильна відповідь: ${correctAnswer}`;
     }
 
     currentTask++;
     scoreElement.textContent = `${score}/${currentTask}`;
- issues2
-    //ref
+
     toggleInputs(false);
 });
 
 nextButton.addEventListener('click', () => {
-    //ref
-    toggleInputs(true);
-
+    if (currentTask >= totalTasks) {
+        return;
+    }
     generateTask();
 });
 
+function toggleInputs(enabled) {
+    const inputs = optionsForm.querySelectorAll('input');
+    inputs.forEach(input => input.disabled = !enabled);
+}
+
 function finishGame() {
-    resultElement.textContent = `рахунок ${score}/${totalTasks}`;
+    resultElement.textContent = `Гра завершена! Рахунок: ${score}/${totalTasks}`;
     nextButton.disabled = true;
 }
 
