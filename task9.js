@@ -5,31 +5,24 @@ const buttons = document.querySelectorAll('.order');
 buttons.forEach(button => {
     button.addEventListener('click', () => {
         const product = button.getAttribute('data-product');
-        if (cart[product]) {
-            cart[product]++;
-        } else {
-            cart[product] = 1;
-        }
-
-        updateCart();
+        updateCartData(product);
     });
 });
 
-function updateCart() {
+function updateCartData(product) {
+    cart[product] = cart[product] ? cart[product] + 1 : 1;
+    updateCartDisplay();
+}
+
+function updateCartDisplay() {
     const cartTable = document.getElementById('cart');
+    const rows = generateCartRows();
+    
+    cartTable.innerHTML = `<tr><th>Товар</th><th>Кількість</th></tr>${rows}`;
+}
 
-    cartTable.innerHTML = `<tr><th>Товар</th><th>Кількість</th></tr>`;
-
-    for (let product in cart) {
-        const row = document.createElement('tr');
-        const productCell = document.createElement('td');
-        const quantityCell = document.createElement('td');
-
-        productCell.textContent = product;
-        quantityCell.textContent = cart[product];
-
-        row.appendChild(productCell);
-        row.appendChild(quantityCell);
-        cartTable.appendChild(row);
-    }
+function generateCartRows() {
+    return Object.entries(cart).map(([product, quantity]) => {
+        return `<tr><td>${product}</td><td>${quantity}</td></tr>`;
+    }).join('');
 }
